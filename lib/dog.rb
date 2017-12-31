@@ -78,7 +78,8 @@ class Dog
       WHERE name = ?
       LIMIT 1;
       SQL
-    DB[:conn].execute(sql, name)[0][0]
+    dg = DB[:conn].execute(sql, name)[0]
+    Dog.new(id: dg[0], name: dg[1], breed: dg[2])
   end
 
 end
