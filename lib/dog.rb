@@ -44,6 +44,22 @@ class Dog
     obj
   end
 
+  def find_by_id(val)
+    sql = <<-SQL
+      SELECT * FROM dogs
+      WHERE id = ?
+      LIMIT 1
+      SQL
+    self.new_from_db(DB[:conn].execute(sql, val)[0])
+  end
+
+  def self.new_from_db(row)
+    obj = Dog.new
+    obj.id = row[0]
+    obj.name = row[1]
+    obj.breed = row[2]
+    obj
+  end
 
 
 end
