@@ -44,7 +44,7 @@ class Dog
     obj
   end
 
-  def find_by_id(val)
+  def self.find_by_id(val)
     sql = <<-SQL
       SELECT * FROM dogs
       WHERE id = ?
